@@ -1,0 +1,156 @@
+{
+  "id": "com.magnuslarsson.dchs220",
+  "version": "0.1.9",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "name": {
+    "en": "D-Link DCH-S220",
+    "sv": "D-Link DCH-S220"
+  },
+  "description": {
+    "en": "Local control of the D-Link DCH-S220 Wi-Fi Siren.",
+    "sv": "Lokal styrning av D-Link DCH-S220 Wi-Fi-siren."
+  },
+  "category": ["security"],
+  "brandColor": "#00A5DF",
+  "author": {
+    "name": "Magnus Larsson"
+  },
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "capabilities": {
+    "siren_sound": {
+      "type": "enum",
+      "title": {"en": "Sound", "sv": "Ljud"},
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {"id": "1", "title": {"en": "Emergency", "sv": "Nödlarm"}},
+        {"id": "2", "title": {"en": "Fire", "sv": "Brandlarm"}},
+        {"id": "3", "title": {"en": "Ambulance", "sv": "Ambulans"}},
+        {"id": "4", "title": {"en": "Police", "sv": "Polis"}},
+        {"id": "5", "title": {"en": "Door chime", "sv": "Dörrklocka"}},
+        {"id": "6", "title": {"en": "Beep", "sv": "Pip"}}
+      ]
+    },
+    "siren_volume": {
+      "type": "number",
+      "title": {"en": "Volume", "sv": "Volym"},
+      "getable": true,
+      "setable": true,
+      "min": 0.01,
+      "max": 1,
+      "step": 0.01,
+      "units": "%"
+    },
+    "siren_duration": {
+      "type": "number",
+      "title": {"en": "Duration", "sv": "Varaktighet"},
+      "getable": true,
+      "setable": true,
+      "min": 5,
+      "max": 300,
+      "step": 1,
+      "units": {"en": "sec", "sv": "sek"}
+    }
+  },
+  "drivers": [
+    {
+      "id": "dch-s220",
+      "name": {"en": "DCH-S220 Wi-Fi Siren", "sv": "DCH-S220 Wi-Fi-siren"},
+      "class": "siren",
+      "capabilities": ["onoff", "siren_sound", "siren_volume", "siren_duration"],
+      "connectivity": ["lan"],
+      "images": {
+        "small": "/drivers/dch-s220/assets/images/small.png",
+        "large": "/drivers/dch-s220/assets/images/large.png",
+        "xlarge": "/drivers/dch-s220/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "instructions",
+          "navigation": {"next": "credentials"}
+        },
+        {
+          "id": "credentials",
+          "navigation": {"previous": "instructions"}
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "options": {"singular": true},
+          "navigation": {"next": "add_devices"}
+        },
+        {"id": "add_devices", "template": "add_devices"}
+      ],
+      "settings": [
+        {"id": "ip", "type": "text", "label": {"en": "IP address", "sv": "IP-adress"}, "value": "192.168.50.129"},
+        {"id": "username", "type": "text", "label": {"en": "Username", "sv": "Användarnamn"}, "value": "Admin"},
+        {"id": "pin", "type": "text", "label": {"en": "Six-digit PIN (visible to administrators)", "sv": "Sexsiffrig PIN-kod (synlig för administratörer)"}, "value": ""},
+        {"id": "poll_interval", "type": "number", "label": {"en": "Status interval (seconds)", "sv": "Statusintervall (sekunder)"}, "value": 15, "min": 5, "max": 300, "step": 1}
+      ]
+    }
+  ],
+  "flow": {
+    "actions": [
+      {
+        "id": "siren_play",
+        "title": {"en": "Play a siren sound", "sv": "Spela ett sirenljud"},
+        "titleFormatted": {
+          "en": "Play [[sound]] at [[volume]]% for [[duration]] seconds",
+          "sv": "Spela [[sound]] med [[volume]]% i [[duration]] sekunder"
+        },
+        "args": [
+          {"name": "device", "type": "device", "filter": "driver_id=dch-s220"},
+          {"name": "sound", "type": "dropdown", "title": {"en": "Sound", "sv": "Ljud"}, "values": [
+            {"id": "1", "label": {"en": "Emergency", "sv": "Nödlarm"}},
+            {"id": "2", "label": {"en": "Fire", "sv": "Brandlarm"}},
+            {"id": "3", "label": {"en": "Ambulance", "sv": "Ambulans"}},
+            {"id": "4", "label": {"en": "Police", "sv": "Polis"}},
+            {"id": "5", "label": {"en": "Door chime", "sv": "Dörrklocka"}},
+            {"id": "6", "label": {"en": "Beep", "sv": "Pip"}}
+          ]},
+          {"name": "volume", "type": "number", "title": {"en": "Volume (1–100)", "sv": "Volym (1–100)"}, "min": 1, "max": 100, "step": 1},
+          {"name": "duration", "type": "number", "title": {"en": "Duration (seconds)", "sv": "Varaktighet (sekunder)"}, "min": 1, "max": 300, "step": 1}
+        ]
+      },
+      {
+        "id": "siren_stop",
+        "title": {"en": "Stop the siren", "sv": "Stoppa sirenen"},
+        "args": [{"name": "device", "type": "device", "filter": "driver_id=dch-s220"}]
+      },
+      {
+        "id": "siren_beep",
+        "title": {"en": "Sound beeps", "sv": "Spela pipsignaler"},
+        "titleFormatted": {
+          "en": "Sound [[times]] beeps at [[volume]]% volume",
+          "sv": "Spela [[times]] pipsignaler med [[volume]]% volym"
+        },
+        "args": [
+          {"name": "device", "type": "device", "filter": "driver_id=dch-s220"},
+          {"name": "times", "type": "number", "title": {"en": "Number of beeps", "sv": "Antal pip"}, "min": 1, "max": 20, "step": 1},
+          {"name": "volume", "type": "number", "title": {"en": "Volume (1–100)", "sv": "Volym (1–100)"}, "min": 1, "max": 100, "step": 1}
+        ]
+      },
+      {
+        "id": "siren_chime_sequences",
+        "title": {"en": "Play door chime sequences", "sv": "Spela dörrklockesekvenser"},
+        "titleFormatted": {
+          "en": "Play [[times]] door chime signals at [[volume]]% volume",
+          "sv": "Spela [[times]] dörrklockesignaler med [[volume]]% volym"
+        },
+        "args": [
+          {"name": "device", "type": "device", "filter": "driver_id=dch-s220"},
+          {"name": "times", "type": "number", "title": {"en": "Number of signals", "sv": "Antal signaler"}, "min": 1, "max": 5, "step": 1},
+          {"name": "volume", "type": "number", "title": {"en": "Volume (1–100)", "sv": "Volym (1–100)"}, "min": 1, "max": 100, "step": 1}
+        ]
+      }
+    ]
+  }
+}

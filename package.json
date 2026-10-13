@@ -1,0 +1,20 @@
+{
+  "name": "com.magnuslarsson.dchs220",
+  "version": "0.1.9",
+  "description": "Homey support for the D-Link DCH-S220 Wi-Fi Siren",
+  "main": "app.js",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "homey": "^3.0.0"
+  },
+  "devDependencies": {
+    "homey": "^3.0.0"
+  },
+  "private": true,
+  "license": "MIT"
+}

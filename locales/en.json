@@ -1,0 +1,21 @@
+{
+  "pair": {
+    "title": "Connect DCH-S220",
+    "subtitle": "Enter the siren's local IP address, username and six-digit PIN.",
+    "guide_title": "Install the DCH-S220",
+    "guide_subtitle": "Prepare the siren before adding it to Homey.",
+    "step1_title": "1. Plug in the siren",
+    "step1_text": "Plug the DCH-S220 into a wall outlet near your Wi-Fi router.",
+    "step2_title": "2. Connect to Wi-Fi using WPS",
+    "step2_text": "Start WPS on the router, then press the siren's WPS button. Wait for it to join the 2.4 GHz network.",
+    "step3_title": "3. Find and reserve the IP address",
+    "step3_text": "Open the router's client list and find the DCH-S220 or its MAC address. Reserve the address so it does not change.",
+    "step4_title": "4. Locate the PIN",
+    "step4_text": "The six-digit PIN and MAC address are printed on the label on the back of the siren.",
+    "warning_title": "Loud sound warning",
+    "warning_text": "The siren can reach 100 dB. Sound is only played when you start a sound test or a Flow yourself.",
+    "trouble_title": "If the siren cannot be found",
+    "trouble_text": "Check that Homey and the siren are on the same local network, client isolation is disabled and the IP address responds.",
+    "continue": "Continue"
+  }
+}

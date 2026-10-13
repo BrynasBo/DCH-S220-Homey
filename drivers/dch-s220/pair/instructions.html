@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .guide { display: grid; gap: 12px; margin: 18px 0; }
+    .step { padding: 14px 16px; border-radius: 14px; background: rgba(0,165,223,.09); }
+    .step strong { display: block; margin-bottom: 5px; color: #007da8; }
+    .step p, .notice p, details p { margin: 0; line-height: 1.45; }
+    .notice { margin: 16px 0; padding: 14px 16px; border-left: 4px solid #f29b21; border-radius: 8px; background: rgba(242,155,33,.12); }
+    .notice strong { display: block; margin-bottom: 5px; }
+    details { margin: 14px 0 20px; padding: 12px 14px; border: 1px solid rgba(127,127,127,.25); border-radius: 12px; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header class="homey-header">
+    <h1 class="homey-title" data-i18n="pair.guide_title">Installera DCH-S220</h1>
+    <p class="homey-subtitle" data-i18n="pair.guide_subtitle">Förbered sirenen innan den läggs till i Homey.</p>
+  </header>
+
+  <main class="guide">
+    <section class="step">
+      <strong data-i18n="pair.step1_title">1. Anslut sirenen</strong>
+      <p data-i18n="pair.step1_text">Sätt DCH-S220 i ett vägguttag nära din Wi-Fi-router.</p>
+    </section>
+    <section class="step">
+      <strong data-i18n="pair.step2_title">2. Anslut till Wi-Fi med WPS</strong>
+      <p data-i18n="pair.step2_text">Starta WPS på routern och tryck sedan på sirenens WPS-knapp.</p>
+    </section>
+    <section class="step">
+      <strong data-i18n="pair.step3_title">3. Hitta och reservera IP-adressen</strong>
+      <p data-i18n="pair.step3_text">Leta efter DCH-S220 eller enhetens MAC-adress i routern.</p>
+    </section>
+    <section class="step">
+      <strong data-i18n="pair.step4_title">4. Ta fram PIN-koden</strong>
+      <p data-i18n="pair.step4_text">PIN-koden finns på etiketten på sirenens baksida.</p>
+    </section>
+  </main>
+
+  <aside class="notice">
+    <strong data-i18n="pair.warning_title">Varning för högt ljud</strong>
+    <p data-i18n="pair.warning_text">Sirenen kan ge upp till 100 dB.</p>
+  </aside>
+
+  <details>
+    <summary data-i18n="pair.trouble_title">Om sirenen inte hittas</summary>
+    <p data-i18n="pair.trouble_text">Kontrollera nätverket och IP-adressen.</p>
+  </details>
+
+  <button id="continue" class="homey-button-primary-full" data-i18n="pair.continue">Fortsätt</button>
+  <script>
+    Homey.setTitle('DCH-S220');
+    document.getElementById('continue').addEventListener('click', () => Homey.showView('credentials'));
+  </script>
+</body>
+</html>

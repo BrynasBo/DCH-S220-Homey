@@ -1,0 +1,21 @@
+{
+  "pair": {
+    "title": "Anslut DCH-S220",
+    "subtitle": "Ange sirenens lokala IP-adress, användarnamn och sexsiffriga PIN-kod.",
+    "guide_title": "Installera DCH-S220",
+    "guide_subtitle": "Förbered sirenen innan den läggs till i Homey.",
+    "step1_title": "1. Anslut sirenen",
+    "step1_text": "Sätt DCH-S220 i ett vägguttag nära din Wi-Fi-router.",
+    "step2_title": "2. Anslut till Wi-Fi med WPS",
+    "step2_text": "Starta WPS på routern och tryck sedan på sirenens WPS-knapp. Vänta tills sirenen har anslutit till 2,4 GHz-nätverket.",
+    "step3_title": "3. Hitta och reservera IP-adressen",
+    "step3_text": "Öppna routerns klientlista och leta efter DCH-S220 eller enhetens MAC-adress. Reservera adressen så att den inte ändras.",
+    "step4_title": "4. Ta fram PIN-koden",
+    "step4_text": "Den sexsiffriga PIN-koden och MAC-adressen finns på etiketten på sirenens baksida.",
+    "warning_title": "Varning för högt ljud",
+    "warning_text": "Sirenen kan ge upp till 100 dB. Ljud spelas bara när du själv startar ett ljudtest eller ett Flow.",
+    "trouble_title": "Om sirenen inte hittas",
+    "trouble_text": "Kontrollera att Homey och sirenen finns i samma lokala nätverk, att klientisolering är avstängd och att IP-adressen svarar.",
+    "continue": "Fortsätt"
+  }
+}
